@@ -1,0 +1,235 @@
+/* HEADER TITLE ANIMATION */
+@keyframes moveInLeft {
+  /* for best performance - it is best to animate only 2 properties: OPACITY and TRANSFORM */
+  0% {
+    /* start of animation */
+    opacity: 0;
+    /* everything is invisible */
+    transform: translateX(-10rem);
+    /* place where the movement on the X axis starts */ }
+  80% {
+    transform: translateX(1rem); }
+  100% {
+    /* end of animation */
+    opacity: 1;
+    /* everything is visible */
+    transform: translate(0);
+    /* place where the movement ends */ } }
+
+@keyframes moveInRight {
+  0% {
+    /* start of animation */
+    opacity: 0;
+    /* everything is invisible */
+    transform: translateX(10rem); }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    /* end of animation */
+    opacity: 1;
+    /* everything is visible */
+    transform: translate(0); } }
+
+@keyframes moveInBottom {
+  0% {
+    /* start of animation */
+    opacity: 0;
+    /* everything is invisible */
+    transform: translateY(2rem); }
+  100% {
+    /* end of animation */
+    opacity: 1;
+    /* everything is visible */
+    transform: translate(0); } }
+
+/* STYLE RESET */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  font-size: 62.5%;
+  /* we specify one font-size for the whole page, then set all other sizes to rem */
+  /* since the browser default is 16px, we set the font-size to 62.5% so it equals to 10px (for easier rem calculations later) */ }
+
+body {
+  box-sizing: border-box; }
+
+body {
+  font-family: "Lato", sans-serif;
+  /* is is conventional to specify anything about the font in the BODY selector */
+  font-weight: 400;
+  /*font-size: 16px;*/
+  line-height: 1.7;
+  color: #777;
+  padding: 3rem; }
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  margin-bottom: 6rem; }
+  .heading-primary--main {
+    display: block;
+    /* makes the span elements into blocks and breaks the heading into two lines */
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    /* applying the animation specified lower (using @keyframes) */
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    /*
+        animation-delay: 2s;  --delay before the animation starts
+        animation-iteration-count: 3;  --how many times the animation repeats
+        */
+    backface-visibility: hidden;
+    /* eliminates the shaking at the end of the animation (it's just a hack) */ }
+  .heading-primary--sub {
+    display: block;
+    /* makes the span elements into blocks and breaks the heading into two lines */
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.7rem;
+    animation: moveInRight 1s ease-out;
+    /* 3 animation specifications (name, duration and timing-function) specified in 1 */ }
+
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  background-image: linear-gradient(to right, #7ed56f, #28b485);
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: .2rem;
+  transition: all .2s; }
+  .heading-secondary:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2); }
+
+.u-center-text {
+  text-align: center; }
+
+.u-margin-bottom-8 {
+  margin-bottom: 8rem; }
+
+/* BUTTONS SETUP */
+.btn:link, .btn:visited {
+  /* :link is the style applied to the element before the link in it is clicked, :visited is the style after it has been clicked */
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  border-radius: 10rem;
+  transition: all .2s;
+  /* "all" - all properties will be animated; "0.2s" - animation time */
+  /* transition is always specified on the initial state (e.g, not the hover state) */
+  position: relative;
+  font-size: 1.6rem; }
+
+.btn:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+  .btn:hover::after {
+    /* styles that will apply for the ::after pseudo-element when it is hovered over */
+    transform: scaleX(1.4) scaleY(1.7);
+    /* increases the size on all sides */
+    opacity: 0;
+    /* makes the element fade out */ }
+
+.btn:active {
+  /* state when the button is being clicked */
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+
+.btn--white {
+  background-color: #fff;
+  color: #777; }
+  .btn--white::after {
+    background-color: #fff; }
+
+.btn::after {
+  content: "";
+  /* required for the pseudo-element to appear on the page at all */
+  display: inline-block;
+  /* also required for the element to appear on the page. inline-block because the .btn has a property "inline-block" */
+  height: 100%;
+  width: 100%;
+  /* since the ::after pseudo-element is treated like a child of the .btn element, the 100% width and height are in reference to the parent - the .btn element */
+  border-radius: 10rem;
+  position: absolute;
+  /* takes the first parent element into reference (.btn:link and .btn:visited) */
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s; }
+
+.btn--animated {
+  animation: moveInBottom 0.5s ease-in 0.75s;
+  animation-fill-mode: backwards;
+  /* applies the styles of the animation's 0% stage before the animation begins */
+  /* in this case - makes the button invisible before the animation begins */ }
+
+.row {
+  max-width: 114rem;
+  margin: 0 auto; }
+  .row:not(:last-child) {
+    margin-bottom: 8rem; }
+  .row::after {
+    content: "";
+    display: table;
+    clear: both; }
+  .row [class^="col-"] {
+    float: left; }
+    .row [class^="col-"]:not(:last-child) {
+      margin-right: 6rem; }
+  .row .col-1-of-2 {
+    width: calc((100% - 6rem) / 2); }
+  .row .col-1-of-3 {
+    width: calc((100% - 2 * 6rem) / 3); }
+  .row .col-2-of-3 {
+    width: calc((2 * (100% - 2 * 6rem) / 3) + 6rem); }
+  .row .col-1-of-4 {
+    width: calc((100% - 3 * 6rem) / 4); }
+  .row .col-2-of-4 {
+    width: calc((2* (100% - 3 * 6rem) / 4) + 6rem); }
+  .row .col-3-of-4 {
+    width: calc((3* (100% - 3 * 6rem) / 4) + (2 * 6rem)); }
+
+/* HEADER ELEMENT */
+.header {
+  height: 95vh;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero.jpg");
+  background-size: cover;
+  background-position: top;
+  /* keeps the top of the image fixed, crops the bottom when the window resizes */
+  position: relative;
+  /* serves as a reference point to the child element (.logo-box) that has position: absolute */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  /* clips the backround. takes in the parameters (x y) for corner points. in the current example: (1)top left, (2)top right, (3)bottom right, (4)bottom left. */ }
+  .header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem; }
+  .header__text-box {
+    position: absolute;
+    top: 45%;
+    /* makes the top border of the box in the middle (visually) of the Y axis of the page (not perfectly centered without "transform") */
+    left: 50%;
+    /* makes the left border of the box directly in the middle of the X axis of the page (not perfectly centered without "transform") */
+    transform: translate(-50%, -50%);
+    /* makes the middle of the .text-box be aligned with the center of the parent container by shifting it by half to the left and by half to the top */
+    text-align: center;
+    /* applies obly to the inline-block elements (button) */ }
+  .header__logo {
+    height: 3.5rem;
+    /* the width will be calculated by the browser */ }
+
+.section-about {
+  background-color: #f7f7f7;
+  padding: 25rem 0;
+  margin-top: -20vh; }

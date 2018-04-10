@@ -1,0 +1,18 @@
+/* STYLE RESET */
+*,
+*::before, 
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    //defines what 1rem will be equal to
+    font-size: 62.5%; /* we specify one font-size for the whole page, then set all other sizes to rem */
+                      /* since the browser default is 16px, we set the font-size to 62.5% so it equals to 10px (for easier rem calculations later) */
+}
+
+body {
+    box-sizing: border-box;
+}

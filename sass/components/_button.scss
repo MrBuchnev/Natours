@@ -1,0 +1,58 @@
+/* BUTTONS SETUP */
+.btn {
+    &:link,
+    &:visited { /* :link is the style applied to the element before the link in it is clicked, :visited is the style after it has been clicked */
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block;
+        border-radius: 10rem;
+        transition: all .2s;   /* "all" - all properties will be animated; "0.2s" - animation time */
+                                /* transition is always specified on the initial state (e.g, not the hover state) */
+        position: relative;
+        font-size: 1.6rem;
+    }
+    
+    &:hover {
+        transform: translateY(-.3rem);
+        box-shadow: 0 1rem 2rem rgba($color-black, .2);
+        
+        &::after { /* styles that will apply for the ::after pseudo-element when it is hovered over */
+            transform: scaleX(1.4) scaleY(1.7); /* increases the size on all sides */
+            opacity: 0; /* makes the element fade out */
+        }
+    }
+    
+    &:active { /* state when the button is being clicked */
+        transform: translateY(-.1rem);
+        box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+    }
+    
+    &--white {
+        background-color: $color-white;
+        color: $color-gray-dark;
+        
+        &::after {
+            background-color: $color-white;
+        }
+    }
+    
+    &::after {
+        content: ""; /* required for the pseudo-element to appear on the page at all */
+        display: inline-block; /* also required for the element to appear on the page. inline-block because the .btn has a property "inline-block" */
+        height: 100%;
+        width: 100%; /* since the ::after pseudo-element is treated like a child of the .btn element, the 100% width and height are in reference to the parent - the .btn element */
+        border-radius: 10rem;
+        position: absolute; /* takes the first parent element into reference (.btn:link and .btn:visited) */
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all 0.4s;
+    }
+    
+    &--animated {
+        animation: moveInBottom .5s/*duration*/ ease-in .75s/*delay*/;
+        animation-fill-mode: backwards; /* applies the styles of the animation's 0% stage before the animation begins */
+                                        /* in this case - makes the button invisible before the animation begins */
+    }
+}

@@ -1,0 +1,44 @@
+/* HEADER TITLE ANIMATION */
+@keyframes moveInLeft {/* for best performance - it is best to animate only 2 properties: OPACITY and TRANSFORM */ 
+    0% { /* start of animation */
+        opacity: 0; /* everything is invisible */
+        transform: translateX(-10rem); /* place where the movement on the X axis starts */
+    }
+    
+    80% {
+        transform: translateX(1rem); 
+    }
+    
+    100% { /* end of animation */
+        opacity: 1; /* everything is visible */
+        transform: translate(0); /* place where the movement ends */
+    }
+}
+
+@keyframes moveInRight {
+    0% { /* start of animation */
+        opacity: 0; /* everything is invisible */
+        transform: translateX(10rem);
+    }
+    
+    80% {
+        transform: translateX(-1rem);   
+    }
+    
+    100% { /* end of animation */
+        opacity: 1; /* everything is visible */
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInBottom {
+    0% { /* start of animation */
+        opacity: 0; /* everything is invisible */
+        transform: translateY(2rem);
+    }
+    
+    100% { /* end of animation */
+        opacity: 1; /* everything is visible */
+        transform: translate(0);
+    }
+}
