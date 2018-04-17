@@ -37,6 +37,16 @@
         }
     }
     
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+        
+        
+        &::after {
+            background-color: $color-primary;
+        }
+    }
+    
     &::after {
         content: ""; /* required for the pseudo-element to appear on the page at all */
         display: inline-block; /* also required for the element to appear on the page. inline-block because the .btn has a property "inline-block" */

@@ -10,6 +10,7 @@
     background-size: cover;
     background-position: top; /* keeps the top of the image fixed, crops the bottom when the window resizes */
     position: relative; /* serves as a reference point to the child element (.logo-box) that has position: absolute */
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* clips the backround. takes in the parameters (x y) for corner points. in the current example: (1)top left, (2)top right, (3)bottom right, (4)bottom left. */
 
     &__logo-box {
