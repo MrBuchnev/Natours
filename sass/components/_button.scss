@@ -1,5 +1,6 @@
 /* BUTTONS SETUP */
 .btn {
+    &,
     &:link,
     &:visited { /* :link is the style applied to the element before the link in it is clicked, :visited is the style after it has been clicked */
         text-transform: uppercase;
@@ -11,6 +12,9 @@
                                 /* transition is always specified on the initial state (e.g, not the hover state) */
         position: relative;
         font-size: $default-font-size;
+        
+        border: none;
+        cursor: pointer;
     }
     
     &:hover {
@@ -23,7 +27,9 @@
         }
     }
     
-    &:active { /* state when the button is being clicked */
+    &:active,
+    &:focus { /* state when the button is being clicked */
+        outline: none;
         transform: translateY(-.1rem);
         box-shadow: 0 .5rem 1rem rgba($color-black, .2);
     }
