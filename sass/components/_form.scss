@@ -2,7 +2,7 @@
     &__group:not(:last-child) {
         margin-bottom: 2rem;
     }
-    
+
     &__input {
         font-size: 1.5rem;
         font-family: inherit;
@@ -10,27 +10,31 @@
         padding: 1.5rem 2rem;
         border-radius: 2px;
         background-color: rgba($color-white, .5);
-        border: none; 
+        border: none;
         border-bottom: 3px solid transparent; // this will eliminate the movement of the second input because of the bottom border
         width: 90%;
         display: block;
         transition: all .5s;
-    
+
+        @include respond(tab-port) {
+            width: 100%;
+        }
+
         &:focus { //styles applied for the element, which has been clicked on (in our case - input)
             outline: none; // eliminates the default input outline
             box-shadow: 0 1rem 2rem rgba($color-black, .1);
             border-bottom: 3px solid $color-primary;
-            
+
             &:invalid { //styles that apply to the focused element, if its value is invalid (e.g. if email field is just written as text)
-                border-bottom: 3px solid $color-secondary-dark; 
+                border-bottom: 3px solid $color-secondary-dark;
             }
         }
-        
+
         &::-webkit-input-placeholder {
             color: $color-gray-dark-2;
         }
     }
-    
+
     &__label {
         font-size: 1.2rem;
         font-weight: 700;
@@ -40,29 +44,34 @@
         transition: all .3s;
     }
 
-    &__input:placeholder-shown + &__label { // selects the adjacent sibling to the input element (which happens to be the __label element) 
+    &__input:placeholder-shown + &__label { // selects the adjacent sibling to the input element (which happens to be the __label element)
                                             // the selected sibling always needs to come AFTER the initially-selected element (input -> label)
         opacity: 0;
-        visibility: hidden; 
+        visibility: hidden;
         transform: translateY(-4rem);
     }
-    
+
     &__radio-group {
         width: 49%;
         display: inline-block;
+
+        @include respond(tab-port) {
+            width: 100%;
+            margin-bottom: 2rem;
+        }
     }
-    
+
     &__radio-input {
         display: none;
     }
-    
+
     &__radio-label {
         font-size: $default-font-size;
-        cursor: pointer; 
+        cursor: pointer;
         position: relative;
         padding-left: 4.5rem;
     }
-    
+
     &__radio-button {
         height: 3rem;
         width: 3rem;
@@ -72,7 +81,7 @@
         position: absolute;
         left: 0;
         top: -.4rem;
-        
+
         &::after {
             content: "";
             display: block;
@@ -88,8 +97,8 @@
             transition: opacity .2s;
         }
     }
-    
+
     &__radio-input:checked ~ &__radio-label &__radio-button::after {
-            opacity: 1; 
+            opacity: 1;
         }
 }

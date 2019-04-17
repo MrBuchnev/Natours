@@ -1,6 +1,6 @@
 .composition {
     position: relative;
-    
+
     &__photo {
         width: 55%;
         box-shadow: 0 1.5rem 4rem rgba($color-black, .4);
@@ -9,22 +9,46 @@
         z-index: 10;
         transition: .2s; // for the hover animation
         outline-offset: 2rem; // for the green outline
-        
+
+        @include respond(tab-port) {
+            float: left;
+            position: relative;
+            width: 33.3333%;
+            box-shadow: 0 1.5rem 3rem rgba($color-black, .2);
+        }
+
         &--p1 {
             left: 0;
             top: -2rem;
+
+            @include respond(tab-port) {
+                top: 0;
+                transform: scale(1.2);
+            }
         }
-        
+
         &--p2 {
             right: 0;
             top: 2rem;
+
+            @include respond(tab-port) {
+                top: -1rem;
+                transform: scale(1.3);
+                z-index: 100;
+            }
         }
-        
+
         &--p3 {
             left: 20%;
             top: 10rem;
+
+            @include respond(tab-port) {
+                top: 1rem;
+                left: 0;
+                transform: scale(1.1);
+            }
         }
-        
+
         &:hover {
             outline: 1.5rem solid $color-primary; //the green outline around the images
             transform: scale(1.05) translateY(-.5rem);

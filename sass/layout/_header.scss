@@ -1,32 +1,52 @@
 /* HEADER ELEMENT */
 .header {
-    height: 95vh;
+    height: 85vh;
     background-image: linear-gradient(
-        to right bottom, 
-        rgba($color-primary-light, 0.8), 
+        to right bottom,
+        rgba($color-primary-light, 0.8),
         rgba($color-primary-dark, 0.8)
-        ), 
-    url("../img/hero.jpg");
+        ),
+    url("../img/hero-small.jpg");
     background-size: cover;
     background-position: top; /* keeps the top of the image fixed, crops the bottom when the window resizes */
     position: relative; /* serves as a reference point to the child element (.logo-box) that has position: absolute */
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* clips the backround. takes in the parameters (x y) for corner points. in the current example: (1)top left, (2)top right, (3)bottom right, (4)bottom left. */
+
+    @supports (clip-path: polygon(0,0)) or (-webkit-clip-path: polygon(0,0)) {
+        height: 95vh;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* clips the backround. takes in the parameters (x y) for corner points. in the current example: (1)top left, (2)top right, (3)bottom right, (4)bottom left. */
+    }
+
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),               // the resolution of the 2x display and the width of the phone (which have 2x displays)
+           only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),    // fix for safari browser
+           only screen and (min-width: 125em) {                                            // width of a big 1x screen
+        background-image: linear-gradient(
+            to right bottom,
+            rgba($color-primary-light, 0.8),
+            rgba($color-primary-dark, 0.8)
+            ),
+        url("../img/hero.jpg");
+    }
+
+    @include respond(phone) {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    }
 
     &__logo-box {
         position: absolute;
-        top: 4rem; 
+        top: 4rem;
         left: 4rem;
     }
-    
+
     &__text-box {
         position: absolute;
-        top: 45%; /* makes the top border of the box in the middle (visually) of the Y axis of the page (not perfectly centered without "transform") */ 
-        left: 50%; /* makes the left border of the box directly in the middle of the X axis of the page (not perfectly centered without "transform") */ 
+        top: 45%; /* makes the top border of the box in the middle (visually) of the Y axis of the page (not perfectly centered without "transform") */
+        left: 50%; /* makes the left border of the box directly in the middle of the X axis of the page (not perfectly centered without "transform") */
         transform: translate(-50%, -50%); /* makes the middle of the .text-box be aligned with the center of the parent container by shifting it by half to the left and by half to the top */
         text-align: center; /* applies obly to the inline-block elements (button) */
     }
-    
+
     &__logo {
         height: 3.5rem; /* the width will be calculated by the browser */
     }

@@ -1,6 +1,6 @@
 /* STYLE RESET */
 *,
-*::before, 
+*::before,
 *::after {
     margin: 0;
     padding: 0;
@@ -11,8 +11,27 @@ html {
     //defines what 1rem will be equal to
     font-size: 62.5%; /* we specify one font-size for the whole page, then set all other sizes to rem */
                       /* since the browser default is 16px, we set the font-size to 62.5% so it equals to 10px (for easier rem calculations later) */
+
+    // the respond(phone) is not used because the font-size is the same as in tab-port below
+
+    @include respond(tab-land) {
+        font-size: 56.25%; // 1rem = 9px (9/16 = 56.25%)
+    }
+
+    @include respond(tab-port) {
+        font-size: 50%; // 1rem = 8px (8/16 = 50%)
+    }
+
+    @include respond(big-desktop) {
+        font-size: 75%; // 1rem = 12px (12/16 = )
+    }
 }
 
 body {
     box-sizing: border-box;
+}
+
+::selection {
+    background-color: $color-primary;
+    color: $color-white;
 }
